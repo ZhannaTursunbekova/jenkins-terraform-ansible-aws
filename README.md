@@ -6,3 +6,4 @@ Then ansible playbooks configure ec2 instances by installing apache web server a
 
 The project also contains Jenkinsfile, so it is possible to create a pipeline which will automate the process of infrastructure 
 provisioning and deploying web servers.
+ 

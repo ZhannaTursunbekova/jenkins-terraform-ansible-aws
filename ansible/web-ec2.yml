@@ -1,0 +1,56 @@
+---
+
+- name: web instances provisioning 
+  hosts: web
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no  
+  
+  tasks:
+    - name: update all packages
+      yum: 
+        name: '*'
+        state: latest
+
+    - name: install packages
+      package:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+        - httpd
+        - git
+
+    - name: create group admin
+      group:
+        name: admin
+        state: present
+
+    - name: create user admin
+      user:
+        name: admin
+        state: present
+        shell: /bin/bash
+        group: admin
+
+    - name: Clone a project
+      git:
+        repo: https://github.com/ZhannaTursunbekova/web-pharmacy.git
+        dest: /var/www/html/
+
+    - name: change ownership
+      file:
+        path: /var/www/html/
+        owner: admin
+        group: admin
+        state: directory
+        recurse: yes
+
+    - name: restart httpd
+      service:
+          name: httpd
+          state: restarted
+          enabled: yes
+
+    

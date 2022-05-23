@@ -1,0 +1,8 @@
+
+/.terraform/*
+
+/ansible/tursunbekova-key.pem
+/ansible/.DS_Store
+.DS_Store
+
+.terraform.lock.hcl

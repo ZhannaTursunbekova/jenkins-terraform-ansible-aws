@@ -89,6 +89,7 @@ pipeline {
                 equals expected: true, actual: params.destroy
             }
         steps {
+            sh 'terraform init -reconfigure'
             sh 'terraform destroy -auto-approve -no-color -var-file="$BRANCH_NAME.tfvars"'
         }
     }

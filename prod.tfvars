@@ -11,5 +11,5 @@ availability_zone = ["us-east-2a", "us-east-2b"]
 
 web_ec2_type = "t2.micro"
 
-admin = ["37.252.82.121/32"]
+admin = ["87.241.185.53/32"]
 
